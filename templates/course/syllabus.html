@@ -1,0 +1,60 @@
+{% extends 'base_site/course_base.html' %}
+
+{% load course %}
+{% load static %}
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+{% block style_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock style_css %}
+
+
+{% block inner_content %}
+<div>
+    <div class=" border p-2 mt-2">
+        <span class="text-capitalize" style="font-size: 25px;">{{course.Cname}} syllabus</span>
+
+        <a href="{% url 'add_subject' course.Cid %}" class="btn btn-outline-info btn-sm float-right">Add Subject</a>
+    </div>
+
+
+
+    <div class="row mt-2">
+        <div class="col-8 mx-auto">
+            <div class="card">
+                <div class="card-body" style=" height: 650px; padding: 20px; overflow-y: scroll;">
+                    {% for cs in course|get_semester_syllabus %}
+
+                    {% if cs.items %}
+                    <h5 class="text-capitalize mb-0">{{cs.semester|get_level_string}} semester</h5>
+
+
+
+                    <table class="table table-hover ml-3">
+                        {% for item in cs.items %}
+                        <tr>
+
+                            <td>
+                                <span>{{forloop.counter}}.</span>
+                                <a href="">{{item.subject}}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+
+
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+{% endblock inner_content %}

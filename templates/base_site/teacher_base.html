@@ -1,0 +1,39 @@
+{% extends 'base_action/side_navbar.html' %}
+
+{% block extra_head %}
+  
+{% endblock extra_head %}
+{% block sub_top_content %}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link border" href="{% url 'teacher_home' %}">Teachers</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link border" href="{% url 'add_teacher' %}">Teacher Registrations</a>
+        </li>
+        
+       
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="{% url 'subject_home' %}">
+        <input class="form-control mr-sm-2" type="search" name="subject_name" placeholder="Search by subject name" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+
+
+
+{% block inner_content %}
+
+{% endblock inner_content %}
+
+
+{% endblock sub_top_content %}

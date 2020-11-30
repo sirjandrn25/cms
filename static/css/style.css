@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#subject_index_table{
+    overflow-y: scroll;
+    height: 700px;
+
+}
+#course_table_index{
+    overflow-y: scroll;
+    height: 700px;
+}
+#attendance_table{
+    overflow-y: scroll;
+    height: 600px;
+}
+#syllabus_scroll{
+    overflow-y: scroll;
+    height: 650px;
+    padding: 20px;
+    background-color: cyan;
+}
+#admission_container{
+    background-color: red;
+}

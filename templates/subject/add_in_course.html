@@ -1,0 +1,40 @@
+{% extends 'base_site/subject_base.html' %}
+
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+
+    
+{% block inner_content %}
+<div>
+    <div class="row">
+        <div class="col-8 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
+            
+            {% for message in messages %}
+                <div class="alert alert-info">{{message}}</div>
+            {% endfor %}
+            
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">{{error}}</div>
+            {% endfor %}
+                
+            <form action="{% url 'add_subject_course' %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                        
+                        {% for error in field.errors %}
+                            <span class="text-danger">{{error}}</span>
+                        {% endfor %}
+                            
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Add Subject</button>
+                    
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock inner_content %}
+    

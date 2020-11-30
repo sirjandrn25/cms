@@ -1,0 +1,47 @@
+{% extends 'base_site/subject_base.html' %}
+
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+
+    
+{% block inner_content %}
+<div>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SNo.</th>
+            <th scope="col">Subject Name</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Part</th>
+            
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for object in objects %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{object.subject}}</td>
+                <td>
+                    {{object.course}}
+                </td>
+                <td>{{object.year}}</td>
+                <td>{{object.part}}</td>
+                
+                <td>
+                  <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                  <a href="#" class="btn btn-danger btn-sm ml-2">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+                
+          
+         
+        </tbody>
+      </table>
+</div>
+{% endblock inner_content %}
+    

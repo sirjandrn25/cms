@@ -1,0 +1,36 @@
+{% extends 'base_site/subject_base.html' %}
+
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+
+    
+{% block inner_content %}
+<div>
+    <div class="row">
+        <div class="col-8 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
+            
+            {% for message in messages %}
+                <div class="alert alert-info">{{message}}</div>
+            {% endfor %}
+                
+            <form action="{% url 'update_subject' subject_id %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                        
+                        {% for error in field.errors %}
+                            <span class="text-danger">{{error}}</span>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Update</button>
+                    
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock inner_content %}
+    

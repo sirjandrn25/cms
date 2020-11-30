@@ -1,0 +1,25 @@
+{% extends 'base_site/subject_base.html' %}
+
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+
+    
+{% block inner_content %}
+<div>
+    <div class="row">
+        <div class="col-8 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
+            
+            
+            <h2>Do You want to sure delete {{course}} ?</h2>
+                
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                <a href="{% url 'course_home' %}" class="btn btn-warning ml-2">Cancel</a>
+                    
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock inner_content %}
+    

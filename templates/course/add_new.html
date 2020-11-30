@@ -1,0 +1,51 @@
+{% extends 'base_site/course_base.html' %}
+
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+
+    
+{% block inner_content %}
+<div class="mt-5">
+    <div class="row">
+        <div class="col-8 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
+            
+            {% for message in messages %}
+                <div class="alert alert-info">{{message}}</div>
+            {% endfor %}
+                
+            <form action="{% url 'add_course' %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+
+                    
+                    {% if field.name == "semester" %}
+                    <div class="form-check mb-2">
+                        {{field}}
+                        {{field.label_tag}}
+
+                        </label>
+                      </div>
+                    {% else %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                        
+                        {% for error in field.errors %}
+                            <span class="text-danger">{{error}}</span>
+                        {% endfor %}
+                            
+                    </div>
+                    {% endif %}
+                    
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Add Course</button>
+                    
+            </form>
+            
+           
+                
+        </div>
+    </div>
+</div>
+{% endblock inner_content %}
+    

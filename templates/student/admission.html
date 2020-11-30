@@ -1,0 +1,107 @@
+{% extends 'base_site/student_base.html' %}
+
+
+<!-- ('first_name','last_name','birth_date','address','phone_no','email','avatar') -->
+
+{% load static %}
+
+
+
+{% block inner_content %}
+<div class="row">
+    <div class="col-11 shadow-lg p-3 mb-3 bg-white rounded mx-auto" style="height: 700px; overflow-y: scroll; ">
+        <h4 class="bg-info text-center text-white p-2 rounded" >Student Admission Form</h4>
+        
+        {% for message in messages %}
+            <div class="alert alert-info"> {{message}}</div>
+        {% endfor %}
+            
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.first_name.label_tag}}
+                                {{student_form.first_name}}
+                                
+                                {% for error in student_form.first_name.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                                    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.last_name.label_tag}}
+                                {{student_form.last_name}}
+                                {% for error in student_form.last_name.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{student_form.email.label_tag}}
+                        {{student_form.email}}
+                        {% for error in student_form.email.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{student_form.address.label_tag}}
+                        {{student_form.address}}
+                        {% for error in student_form.address.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.phone_no.label_tag}}
+                                {{student_form.phone_no}}
+                                {% for error in student_form.phone_no.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.birth_date.label_tag}}
+                                {{student_form.birth_date}}
+                                {% for error in student_form.birth_date.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{admission_form.course.label_tag}}
+                        {{admission_form.course}}
+                        {% for error in admission_form.course.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="w-100 border mt-3" style="height: 250px;">
+                        
+                    </div>
+                    <div class="form-row">
+                        {{student_form.avatar.label_tag}}
+                        {{student_form.avatar}}
+                        {% for error in student_form.avatar.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+</div>
+{% endblock inner_content %}
+    

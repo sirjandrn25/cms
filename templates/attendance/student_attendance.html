@@ -1,0 +1,122 @@
+{% extends 'base_site/attendance_base.html' %}
+
+{% load static %}
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+{% load attendance %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock extra_head %}
+    
+{% block inner_content %}
+<div class="m-2">
+
+    
+    {% if error %}
+      <div class="alert alert-danger">
+        {{error}}
+      </div>
+    {% endif %}
+      
+    
+    <div class="row">
+        <div class="col-4 mx-auto shadow-lg p-3 mb-5 bg-white rounded">
+            <form action="">
+                
+                {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                    </div>
+                {% endfor %}
+                <button class="btn btn-info">Fetch Data</button>
+                    
+            </form>
+        </div> 
+        
+        {% if admissions %}
+        <div class="col-7 mx-auto shadow-lg p-3 mb-3 bg-white rounded"  id="attendance_list">
+          
+         
+            
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input hidden type="text" name="date" value="{{date_subject_course.date}}" >
+            <input hidden type="text" name="course" value="{{date_subject_course.course.Cid}}" >
+            <input hidden type="text" name="subject" value="{{date_subject_course.subject.subId}}" >
+
+            <div id="attendance_table" style=" overflow-y: scroll; max-height: 600px;" >
+              {% for message in messages %}
+              <div class="alert alert-warning">{{message}}</div>
+            {% endfor %}
+              <table class="table">
+                <thead>
+                  <tr>
+                   
+                    <th scope="col">Sno.</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Roll No</th>
+                    <th scope="col">Course</th>
+                    <th><div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="all_check">
+                        <label class="custom-control-label" for="all_check">All Present </label>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  
+                   
+                    {% for admission in admissions %}
+                    <tr>
+                        
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td class="text-capitalize">{{admission.student.first_name}} {{admission.student.last_name}}</td>
+                        <td class="text-uppercase">{{admission.rollno}}</td>
+                        <td class="text-capitalize">{{admission.course}}</td>
+                        
+                        {% if date_subject_course|check_attendance:admission.student %}
+                        <td>
+                          <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input student_check" name="{{admission.student.StuId}}" id="{{admission.student.StuId}}" checked>
+                              <label class="custom-control-label" for="{{admission.student.StuId}}">Present</label>
+                            </div>
+                          
+                      </td>
+                      {% else %}
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input student_check" name="{{admission.student.StuId}}" id="{{admission.rollno}}">
+                            <label class="custom-control-label" for="{{admission.rollno}}">Present</label>
+                          </div>
+                        
+                    </td>
+                        {% endif %}
+                          
+                       
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+                        
+              </table>
+            </div>
+        
+            
+              <button type="submit" class="btn btn-info">Save</button>
+            </form>
+            
+        </div>
+        {% endif %}
+
+        
+    </div>
+</div>
+{% endblock inner_content %}
+
+{% block script %}
+    <script src="{% static 'js/attendance.js' %}"></script>
+{% endblock script %}
+    
+    
