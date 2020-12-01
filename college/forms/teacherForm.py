@@ -28,3 +28,11 @@ class TeacherRegistrationCourseForm(forms.ModelForm):
         widgets = {
             'course':forms.Select(attrs={'class':'form-control'})
         }
+class AssignSubjectForm(forms.ModelForm):
+    class Meta:
+        model = AssignSubject
+        fields = ('course','subject')
+        widgets = {
+            'course':forms.Select(attrs={'class':'form-control'}),
+            'subject':forms.Select(attrs={'class':'form-control'})
+        }

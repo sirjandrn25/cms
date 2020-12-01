@@ -48,7 +48,7 @@ class StudentAttendanceView(View):
             admissions = Admission.objects.filter(course=course)
             form.fields['course'].initial=(course.Cid,course.Cname)
             subject_list=subject_lists(course)
-            # print(subject_choices(subject_list))
+        
 
             form.fields['subject'].choices = subject_choices(subject_list)
             

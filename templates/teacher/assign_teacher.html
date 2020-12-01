@@ -1,0 +1,79 @@
+{% extends 'base_site/teacher_base.html' %}
+
+<!-- ('first_name','last_name','birth_date','address','phone_no','email','avatar') -->
+
+<!-- 'Cname','Cduration','degree_level','department','seats' -->
+{% load static %}
+
+{% load course %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock extra_head %}
+{% block style_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock style_css %}
+{% block inner_content %}
+<div class="mt-3" >
+    <div class="row">
+        <div class="col-4 border p-3 ml-3">
+            
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    {{message}}
+                </div>
+            {% endfor %}
+                
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_teacher">Full Name</label>
+                    <input type="text" class="form-control" name="teacher" id="id_teacher" value="{{teacher}}" readonly>
+                </div>
+                {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-info">Save</button>
+                    
+            </form>
+        </div>
+        <div class="col-7 mx-auto">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sno.</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  {% for item in data %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+    
+                    <td>{{item.subject}}</td>
+                    <td>{{item.course}}</td>
+                    <td>
+                        <a href="" class="text-danger" data-toggle="tooltip" data-placement="top" title="remove">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                              </svg>
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                      
+                 
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock inner_content %}
+    

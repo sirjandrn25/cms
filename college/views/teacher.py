@@ -42,4 +42,34 @@ class AddTeacherView(View):
             'form':form
         }
         return render(request,"teacher/add_teacher.html",context_data)
+
+class AssignSubjectView(View):
+    def get(self,request,teacher_id):
+        form = AssignSubjectForm()
+        teacher = Teacher.objects.get(id=teacher_id)
+        data = AssignSubject.objects.filter(teacher=teacher)
+        context_data = {
+            'form':form,
+            'teacher':teacher,
+            'data':data
+        }
+        return render(request,"teacher/assign_teacher.html",context_data)
+    def post(self,request,teacher_id):
+        
+        form = AssignSubjectForm(request.POST)
+        teacher = Teacher.objects.get(id=teacher_id)
+        if form.is_valid():
+            assign_subject = form.save(commit=False)
+            assign_subject.teacher=teacher
+            try:
+                assign_subject.save()
+                msg = "Assign subject successfully"
+            except:
+                msg = "Already Exists"
+            messages.info(request,msg)
+
+
+        
+        return redirect(request.get_full_path())
+
         

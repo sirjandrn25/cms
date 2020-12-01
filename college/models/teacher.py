@@ -52,7 +52,11 @@ class TeacherRegisterCourse(models.Model):
         return f"{self.teacher.first_name} {self.teacher.last_name} join {self.course.Cname}"
     
 
+class AssignSubject(models.Model):
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    class Meta:
+        unique_together=('teacher','subject','course')
 
-
-
-    

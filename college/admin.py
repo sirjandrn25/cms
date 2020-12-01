@@ -46,9 +46,11 @@ class TeacherAdmin(admin.ModelAdmin):
 @admin.register(StudentAttendance)
 class StudentAttendanceAdmin(admin.ModelAdmin):
     list_display = ['id','student','course','subject','date']
+
+@admin.register(AssignSubject)
+class AssignSubjectAdmin(admin.ModelAdmin):
+    list_display = ['id','course','subject','teacher']
     
 admin.site.register(TeacherRegisterCourse)
-# admin.site.register(StudentAttendance)
 
-# admin.site.register(SubjectCourse)
 
