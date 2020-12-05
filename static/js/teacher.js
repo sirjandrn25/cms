@@ -43,5 +43,43 @@ const fetch_subjects = (course_id)=>{
 course.addEventListener("change",e=>{
     fetch_subjects(e.target.value)
 })
-// window.onload = fetch_subjects()
+
+
+const search_form = document.getElementById('search_form');
+const course_option = document.getElementById('select_course');
+course_option.addEventListener("change",e=>{
+    search_form.submit()
+})
+
+
+
 window.onload=fetch_subjects(course.options[0].value)
+
+
+const full_url = window.location.href;
+const path_name = window.location.pathname;
+const remaining_url = full_url.slice(full_url.indexOf(path_name),full_url.length-1);
+const index = remaining_url.indexOf("?");
+
+const course_option_map = ()=>{
+    const search_value = remaining_url.substr(index+1,remaining_url.length);
+    const course_search = (search_value.split('&'))[0];
+    const course_value = (course_search.split('='))[1]
+
+    for(let option of course_option){
+        if(option.value === course_value){
+            option.setAttribute('selected',true);
+            break;
+        }
+    }
+}
+if (index !=-1){
+    
+    window.onload = course_option_map();
+}
+    
+
+
+
+
+

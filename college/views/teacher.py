@@ -49,11 +49,19 @@ class AssignSubjectView(View):
         form = AssignSubjectForm()
         teacher = Teacher.objects.get(id=teacher_id)
         form.fields['teacher'].initial=teacher
-        data = AssignSubject.objects.filter(teacher=teacher)
+        data = AssignSubject.objects.filter(teacher=teacher).order_by('-date')
+        courses = Course.objects.all()
+        course_id = request.GET.get('course_option')
+        if course_id and course_id !="all":
+            course = Course.objects.get(Cid=course_id)
+            data = AssignSubject.objects.filter(teacher=teacher,course=course).order_by('-date')
+
+
         context_data = {
             'form':form,
             'teacher':teacher,
-            'data':data
+            'data':data,
+            'courses':courses
         }
         return render(request,"teacher/assign_teacher.html",context_data)
     def post(self,request,teacher_id):

@@ -39,6 +39,27 @@
             </form>
         </div>
         <div class="col-7 mx-auto">
+            <div>
+              <form action="" method="get" class="form-inline mb-2" id="search_form">
+                <div class="form-group mr-2">
+                  <select class="form-control" name="course_option" id="select_course">
+                    <option value="all" selected>All Courses</option>
+                    {% for course in courses %}
+                        <option value="{{course.Cid}}">{{course}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control" name="year_option" id="select_year">
+                    <option value="all">All Years</option>
+                    
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </select>
+                </div>
+              </form>
+            </div>
             <table class="table">
                 <thead>
                   <tr>
@@ -58,7 +79,7 @@
     
                     <td>{{item.subject}}</td>
                     <td>{{item.course}}</td>
-                    <td>{{item.date.year}}</td>
+                    <td>{{item.date}}</td>
                     <td>
 
                         <a href=" {% url 'assign_subject_delete' item.id %}" class="text-danger" data-toggle="tooltip" data-placement="top" title="remove">
