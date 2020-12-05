@@ -119,9 +119,11 @@ class AddSubjectInCourseView(View):
 
         form = AddSubjectForm(request.POST)
         if form.is_valid():
-          
-            subject_course = form.save()
-            messages.info(request,f"{subject_course.subject} subject add in {subject_course.course} course successfully")
+            try:
+                subject_course = form.save()
+                messages.info(request,f"{subject_course.subject} subject add in {subject_course.course} course successfully")
+            except:
+                messages.info(request,"duplicate values is not exists")
             return redirect(request.get_full_path())
         else:
             print("not added")

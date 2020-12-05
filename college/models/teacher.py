@@ -1,5 +1,6 @@
 from django.db import models
 from college.models import *
+from datetime import datetime
 
 
 gender_choices = (
@@ -54,9 +55,12 @@ class TeacherRegisterCourse(models.Model):
 
 class AssignSubject(models.Model):
     teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE,default=1)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,default=1)
     date = models.DateField(auto_now_add=True)
-    class Meta:
-        unique_together=('teacher','subject','course')
 
+
+
+  
+        # super(AssignSubject,self).save(*args,**kwargs)
+        

@@ -31,8 +31,10 @@ class TeacherRegistrationCourseForm(forms.ModelForm):
 class AssignSubjectForm(forms.ModelForm):
     class Meta:
         model = AssignSubject
-        fields = ('course','subject')
+        fields = ('teacher','course','subject')
         widgets = {
+            'teacher':forms.Select(attrs={'class':'form-control','readonly':True}),
             'course':forms.Select(attrs={'class':'form-control'}),
             'subject':forms.Select(attrs={'class':'form-control'})
         }
+    

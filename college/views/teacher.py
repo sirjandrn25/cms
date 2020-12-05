@@ -3,6 +3,7 @@ from college.models import *
 from django.views import View
 from college.forms import *
 from django.contrib import messages
+from datetime import datetime
 
 
 class TeacherHome(View):
@@ -47,6 +48,7 @@ class AssignSubjectView(View):
     def get(self,request,teacher_id):
         form = AssignSubjectForm()
         teacher = Teacher.objects.get(id=teacher_id)
+        form.fields['teacher'].initial=teacher
         data = AssignSubject.objects.filter(teacher=teacher)
         context_data = {
             'form':form,
@@ -55,21 +57,37 @@ class AssignSubjectView(View):
         }
         return render(request,"teacher/assign_teacher.html",context_data)
     def post(self,request,teacher_id):
-        
+    
         form = AssignSubjectForm(request.POST)
         teacher = Teacher.objects.get(id=teacher_id)
+        # print(form.fields)
         if form.is_valid():
-            assign_subject = form.save(commit=False)
-            assign_subject.teacher=teacher
-            try:
-                assign_subject.save()
-                msg = "Assign subject successfully"
-            except:
-                msg = "Already Exists"
-            messages.info(request,msg)
+            course = request.POST.get('course')
+            subject = request.POST.get('subject')
+            
 
+            assign_subject = AssignSubject.objects.filter(course=course,subject=subject,teacher=teacher,date__year=datetime.now().date().year)
+            if assign_subject:
+                msg = "Already exists"
+            else:
+                msg = "Successfully assign subject"
+                data = form.save()
+                
+            messages.info(request,msg)
 
         
         return redirect(request.get_full_path())
+
+
+class DeleteAssignSubject(View):
+    def get(self,request,id):
+        try:
+            data = AssignSubject.objects.get(id=id)
+            data.delete()
+            msg = "Successfully deleted"
+        except:
+            msg = "Deleted operation is not performed"
+        messages.info(request,msg)
+        return redirect(request.META['HTTP_REFERER'])
 
         
