@@ -7,7 +7,12 @@ import datetime
 
 
 
+gender_choices = (
+    ('male','Male'),
+    ('female','Female')
+)
 class Student(models.Model):
+    
     StuId = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
@@ -17,8 +22,7 @@ class Student(models.Model):
     email = models.EmailField(max_length=150,blank=True)
     avatar = models.ImageField(upload_to="avatar/")
     objects = StudentManager()
-    # objects = models.Manager()
-    import datetime
+    gender = models.CharField(max_length=30,choices=gender_choices,default=1)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

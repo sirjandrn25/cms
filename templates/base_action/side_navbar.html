@@ -1,65 +1,69 @@
 {% extends 'base/layout.html' %}
 
-
-
 {% load static %}
 
-
 {% block extra_head %}
-  
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock extra_head %}
-  
-  
-{% block content %}
 
-<div class="container-fluid p-0 row mt-5">
-    <div class="col-lg-3 col-md-2 side_nav" style="background-color: rgb(60, 60, 61);  height:94vh; padding:5px;">
-     <ul class="nav flex-column p-3">
-         <li class="nav-item ">
-           <a class="nav-link" href="#">Dashboard</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="{% url 'student_home' %}">
-            Student Management
-            </a>
-         </li>
-           <li class="nav-item">
-             <a class="nav-link" href="{% url 'course_home' %}">Courses Management</a>
-           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="{% url 'subject_home' %}">Subjects Management</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'teacher_home' %}">Teacher Management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Results Management</a>
-          </li>
-           <li class="nav-item">
-             <a class="nav-link" href="#">Exam Management</a>
-           </li>
-           <li class="nav-item">
-           <a class="nav-link" href="{% url 'student_attendance' %}">Attendance Management</a>
-         </li>
-    
-         <li class="nav-item">
-           <a class="nav-link" href="#">Staff Management</a>
-         </li>
-       </ul>
-    </div> 
-    <div class="col-lg-9 col-md-10">
+{% block inner_extra_head %}
+  
+{% endblock inner_extra_head %}
+  
+
+
+
+{% block outer_content %}
+<div class="container-fluid ">
+  <div class="row">
+    <ul class="nav flex-column py-3 col-2 border" id="side_bar" style="background-color: #d8d8d2;">
+
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'student_home' %}">
+         
+         Student Management
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'course_home' %}">Courses Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'subject_home' %}">Subjects Management</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'teacher_home' %}">Teacher Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Results Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Exam Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'student_attendance' %}">Attendance Management</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Staff Management</a>
+      </li>
+    </ul>
+    <div class="col-10">
+      
+      {% block sub_top_content %}
         
-       
-       {% block sub_top_content %}
-           
-       {% endblock sub_top_content %}
-           
-            
+      {% endblock sub_top_content %}
+        
     </div>
+  </div>
+
 
 </div>
-{% endblock content %}
+{% endblock outer_content %}
+
+
 {% block script %}
-  
+
 {% endblock script %}
-    

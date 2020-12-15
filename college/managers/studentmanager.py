@@ -16,7 +16,8 @@ class StudentManager(models.Manager):
             cursor.execute("select * from college_student order by first_name")
             result_list = []
             for row in cursor.fetchall():
-                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7])
+                # print(row[8])
+                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7],gender=row[8])
                 result_list.append(p)
             return result_list
 
@@ -25,7 +26,8 @@ class StudentManager(models.Manager):
             cursor.execute(f"SELECT * FROM college_student where first_name={name}")
             result_list = []
             for row in cursor.fetchall():
-                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7])
+              
+                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7],gender=row[8])
                 result_list.append(p)
             return result_list
     def filter_by_course(self,course=None,name=None):
@@ -53,7 +55,7 @@ class StudentManager(models.Manager):
                 cursor.execute(f"SELECT * FROM college_student")
             result_list = []
             for row in cursor.fetchall():
-                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7])
+                p = self.model(StuId=row[0],first_name=row[1],last_name=row[2],birth_date=row[3],address=row[4],phone_no=row[5],email=row[6],avatar=row[7],gender=row[8])
                 result_list.append(p)
             return result_list
 

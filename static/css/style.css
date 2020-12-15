@@ -1,16 +1,14 @@
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-#subject_index_table{
-    overflow-y: scroll;
-    height: 700px;
 
-}
-#course_table_index{
+.scroller_table{
     overflow-y: scroll;
-    height: 700px;
+    height: 720px;
 }
 #attendance_table{
     overflow-y: scroll;
@@ -22,6 +20,36 @@
     padding: 20px;
     background-color: cyan;
 }
-#admission_container{
-    background-color: red;
+#side_bar{
+    background-color: #436689;
+}
+#side_bar li{
+   padding: 10px;
+   border-bottom: 2px solid black;
+   
+}
+#side_bar li a {
+    padding: 10px;
+
+
+}
+#side_bar li a:hover {
+    background-color:#d6d6c2;
+}
+#wrapper_div{
+    height: 750px;
+}
+/* height: 650px; padding: 20px; overflow-y: scroll; */
+#card_body{
+    height: 670px;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+#navbarSupportedContent{
+	position: relative;
+}
+#collapseExample{
+	position: absolute;
+	top: 20px;
 }

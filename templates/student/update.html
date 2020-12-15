@@ -9,7 +9,7 @@
 
 {% block inner_content %}
 <div class="row">
-    <div class="col-11 shadow-lg p-3 mb-3 bg-white rounded mx-auto" style="height: 700px; overflow-y: scroll; ">
+    <div class="col-11 mt-2 shadow-lg p-3 mb-3 bg-white rounded mx-auto" style="height: 700px; overflow-y: scroll; ">
         
         {% for message in messages %}
             <div class="alert alert-info"> {{message}}</div>
@@ -48,13 +48,7 @@
                                     <span class="text-danger">{{error}}</span>
                         {% endfor %}
                     </div>
-                    <div class="form-group">
-                        {{student_form.address.label_tag}}
-                        {{student_form.address}}
-                        {% for error in student_form.address.errors %}
-                                    <span class="text-danger">{{error}}</span>
-                                {% endfor %}
-                    </div>
+                    
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -70,6 +64,28 @@
                                 {{student_form.birth_date.label_tag}}
                                 {{student_form.birth_date}}
                                 {% for error in student_form.birth_date.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.address.label_tag}}
+                                {{student_form.address}}
+                                
+                                {% for error in student_form.address.errors %}
+                                    <span class="text-danger">{{error}}</span>
+                                {% endfor %}
+                                    
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{student_form.gender.label_tag}}
+                                {{student_form.gender}}
+                                {% for error in student_form.gender.errors %}
                                     <span class="text-danger">{{error}}</span>
                                 {% endfor %}
                             </div>

@@ -7,21 +7,32 @@
 
 {% load course %}
     
-{% block extra_head %}
+{% block inner_extra_head %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock extra_head %}
+{% endblock inner_extra_head %}
 {% block inner_content %}
-<div id="course_table_index" >
+<div class="border border-bottom-0 mt-2 p-2 bg-light">
+  <span class="mx-3 text-info">
+    Total Students :  <span class="badge badge-warning">{{total_students}}</span>
+  </span>
+  <span class="mx-3 text-info">
+    Total Girls : <span class="badge badge-warning">{{total_female}}</span>
+  </span>
+  <span class="mx-3 text-info">
+    Total Boys :  <span class="badge badge-warning">{{total_male}}</span>
+  </span>
+</div>
+<div class="scroller_table" >
     <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">SNo.</th>
-            <th scope="col">Photo</th>
             <th scope="col">Full Name</th>
             <th scope="col">Address</th>
             <th scope="col">Phone No</th>
             <th scope="col">Course</th>
             <th scope="col">Roll No</th>
+            <th scope="col">Gender</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -29,8 +40,7 @@
             
             {% for student in students %}
             <tr>
-                <td>{{forloop.counter}}</td>
-                <td><img src="{{student.avatar.url}}" class="img-fluid rounded-circle" height="60" width="60" alt=""></td>
+                <td>{{forloop.counter}}.</td>
                 <td class="text-capitalize">{{student.first_name}} {{student.last_name}}</td>
   
                 <td>{{student.address}}</td>
@@ -38,7 +48,7 @@
                 <td class="text-capitalize"> {{student|get_student_course}} </td>
                 <td class="text-uppercase">{{student|get_student_roll}}</td>
 
-               
+               <td class="text-capitalize">{{student.gender}}</td>
                 <td>
                   <a href="{% url 'update_student' student.StuId %}" class="text-primary" data-toggle="tooltip" data-placement="top" title="edit student">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

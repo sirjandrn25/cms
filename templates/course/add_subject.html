@@ -4,8 +4,13 @@
 <!-- 'Cname','Cduration','degree_level','department','seats' -->
 {% load static %}
     
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock extra_head %}
+    
 {% block inner_content %}
-<div class="mt-5">
+<div class="mt-3" id="wrapper_div">
     
     <div class="row">
         <div class="col-8 mx-auto shadow-lg p-3 mb-5 bg-white rounded">

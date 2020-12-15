@@ -11,7 +11,7 @@ from django import forms
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('first_name','last_name','birth_date','address','phone_no','email','avatar')
+        fields = ('first_name','last_name','birth_date','address','phone_no','email','avatar','gender')
         widgets = {
             'first_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Enter First Name'}),
             'last_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Last Name'}),
@@ -19,7 +19,8 @@ class StudentForm(forms.ModelForm):
             'email':forms.EmailInput(attrs={'class':'form-control','placeholder':'Enter Your Email'}),
             'phone_no':forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Phone Number'}),
             'birth_date':forms.DateInput(attrs={'class':'form-control','placeholder':'Enter Your Birth date'}),
-            'avatar':forms.FileInput(attrs={'class':'form-control'})
+            'avatar':forms.FileInput(attrs={'class':'form-control'}),
+            'gender':forms.Select(attrs={'class':'form-control'})
         }
 
 

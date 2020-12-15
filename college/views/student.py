@@ -8,6 +8,15 @@ import datetime
 
 
 
+def count_gender(data,gender_type):
+    count = 0
+    for item in data:
+        if item.gender==gender_type:
+            count +=1
+        
+    return count
+        
+
 class StudentView(View):
     def get(self,request):
         students = Student.objects.get_sorting_by_name()
@@ -25,9 +34,13 @@ class StudentView(View):
                 students = Student.objects.filter_by_course(course=course)
         except:
             pass
+     
         context_data = {
             'students':students,
-            'courses':courses
+            'courses':courses,
+            'total_students':len(students),
+            'total_male':count_gender(students,"male"),
+            'total_female':count_gender(students,"female")
         }
         return render(request,"student/index.html",context_data)
 

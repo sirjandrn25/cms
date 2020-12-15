@@ -3,6 +3,13 @@
 
 <!-- 'Cname','Cduration','degree_level','department','seats' -->
 
+{% load static %}
+    
+
+{% block inner_extra_head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock inner_extra_head %}
+    
     
 {% block inner_content %}
 <div class="mt-5">
